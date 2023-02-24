@@ -1,0 +1,34 @@
+import asyncio
+import time
+
+import discord
+from discord.ext import commands
+from core.classes import Cog_extension
+
+class Main(commands.Cog):
+
+    def __init__(self, bot):
+        super().__init__()
+        self.bot = bot
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+
+        async def interval():   # 間隔
+            await self.bot.wait_until_ready()
+            print("inininin")
+            self.channel = self.bot.get_channel(863774440957149195)
+            print(self.bot.is_closed())
+            while (not self.bot.is_closed()):
+                await self.channel.send("HIHI")
+                await asyncio.sleep(5) #time.sleep()
+        self.bg_task = self.bot.loop.create_task(interval())
+    @commands.command()
+    async def timer(self, ctx):
+        await ctx.send("cntcnt")
+
+    @commands.Cog.listener()
+    async def on_ready(self):
+        print(">loading<")
+async def setup(bot):
+    await bot.add_cog(Main(bot))
