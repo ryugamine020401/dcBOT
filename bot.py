@@ -62,7 +62,7 @@ async def main():
 #         await channel.send("hello")
 #         await asyncio.sleep(5)
 
-TOCKEN = "MTA3NzU4OTU5ODEwNjA0NjU0Ng.GGJo9p.WsimgTFhSl5ydCqXsh3RwNvOq3FVjZIx2Lw5Oo"
+TOCKEN = ""
 if __name__ =="__main__":
 
     asyncio.run(main())
