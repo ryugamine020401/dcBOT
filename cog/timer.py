@@ -6,7 +6,7 @@ from discord.ext import commands
 from core.classes import Cog_extension
 with open('.\\Setting.json', 'r', encoding="UTF-8") as jfile:
     jsonfile = json.load(jfile)
-class Main(commands.Cog):
+class timer(commands.Cog):
 
     def __init__(self, bot):
         super().__init__()
@@ -32,4 +32,4 @@ class Main(commands.Cog):
     async def on_ready(self):
         print(">loading<")
 async def setup(bot):
-    await bot.add_cog(Main(bot))
+    await bot.add_cog(timer(bot))

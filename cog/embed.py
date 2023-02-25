@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from core.classes import Cog_extension
 
-class Embed(Cog_extension):
+class embed(Cog_extension):
     # 已經繼承Cog_extension內的東西了
     # def __int__(self, bot):
     #     self.bot = bot
@@ -24,5 +24,5 @@ class Embed(Cog_extension):
         await ctx.send(embed=embed)
 
 async def setup(bot):
-    await bot.add_cog(Embed(bot))
+    await bot.add_cog(embed(bot))
 

@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from discord.ext import commands
 from core.classes import Cog_extension
 
-class Pixiv(Cog_extension):
+class pixiv(Cog_extension):
     # 已經繼承Cog_extension內的東西了
     # def __int__(self, bot):
     #     self.bot = bot
@@ -24,4 +24,4 @@ class Pixiv(Cog_extension):
             await ctx.send(tmp[1:-1])
 
 async def setup(bot):
-    await bot.add_cog(Pixiv(bot))
+    await bot.add_cog(pixiv(bot))

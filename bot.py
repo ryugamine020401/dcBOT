@@ -13,7 +13,25 @@ bot = commands.Bot(command_prefix=prefix, intents=intents_)
 #當機器人完成啟動時
 async def on_ready():
     print('>>>BOT ONLINE<<<', bot.user)
-#當有訊息時
+
+@bot.command()
+async def load(ctx, extension):
+    await bot.load_extension(f'cog.{extension}')
+    await ctx.send(f'{extension} Load Successful.')
+
+
+@bot.command()
+async def reload(ctx, extension):
+    await bot.reload_extension(f'cog.{extension}')
+    await ctx.send(f'{extension} Reload Successful.')
+
+
+@bot.command()
+async def unload(ctx, extension):
+    print("有近來", extension, type(extension),f'cog.{extension}')
+    await bot.unload_extension(f'cog.{extension}')
+    await ctx.send(f'{extension} Unload Successful.')
+    #await self.bot.unload_extension(, name=f'cog.{extension}')
 
 # @bot.event
 # async def on_message(message):
@@ -35,7 +53,6 @@ async def main():
     async with bot:
         await load_cog()
         await bot.start(jsonfile['TOCKEN'])
-
 
 
 with open('./Setting.json', 'r', encoding="UTF-8") as jfile:
