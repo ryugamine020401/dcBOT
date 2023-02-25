@@ -28,7 +28,6 @@ async def reload(ctx, extension):
 
 @bot.command()
 async def unload(ctx, extension):
-    print("有近來", extension, type(extension),f'cog.{extension}')
     await bot.unload_extension(f'cog.{extension}')
     await ctx.send(f'{extension} Unload Successful.')
     #await self.bot.unload_extension(, name=f'cog.{extension}')
@@ -52,11 +51,11 @@ async def load_cog():
 async def main():
     async with bot:
         await load_cog()
-        await bot.start(jsonfile['TOCKEN'])
+        await bot.start(jsondata['TOCKEN'])
 
 
 with open('./Setting.json', 'r', encoding="UTF-8") as jfile:
-    jsonfile = json.load(jfile)
+    jsondata = json.load(jfile)
 
 TOCKEN = ""
 
