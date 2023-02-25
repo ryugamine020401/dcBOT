@@ -60,8 +60,12 @@ async def main():
 #         await channel.send("hello")
 #         await asyncio.sleep(5)
 
+
 with open('./Setting.json', 'r', encoding="UTF-8") as jfile:
     jsonfile = json.load(jfile)
+
+TOCKEN = ""
+
 if __name__ =="__main__":
 
     asyncio.run(main())
