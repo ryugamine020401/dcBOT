@@ -5,7 +5,7 @@ from core.classes import Cog_extension
 # 引入方式亂七八糟 但可以讀到 可能是bot跟其他都有連結 所以jfile完全共用...
 with open('Setting.json', 'r', encoding="utf8") as jfile:
     jsondata = json.loads(jfile.read())
-    print(jsondata['TOCKEN'])
+    #print(jsondata['TOCKEN'])
 
 class command(Cog_extension):
     # 已經繼承Cog_extension內的東西了
@@ -14,7 +14,7 @@ class command(Cog_extension):
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print("COG COMMAND IS LOADING...<<")
+        print(">>COG COMMAND IS LOADING...<<")
 
     @commands.command()
     async def Ping(self, ctx):
@@ -25,9 +25,10 @@ class command(Cog_extension):
         # await print("進settime")
         # await ctx.send(time)
         jsondata['time'] = time
+        jsondata['timer_counter'] = "0"
         # 輸出方式亂七八糟 但可以讀到 可能是bot跟其他都有連結 所以jfile完全共用...
         with open('Setting.json', "w", encoding="utf8") as jfile:
-            print("輸入")
+            print("客戶端輸入 更動定時器時間...")
             json.dump(jsondata, jfile, indent=4)
         await ctx.send("time set successful.")
 

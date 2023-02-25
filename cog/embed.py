@@ -8,7 +8,7 @@ class embed(Cog_extension):
     #     self.bot = bot
     @commands.Cog.listener()
     async def on_ready(self):
-        print("COG COMMAND IS LOADING...<<")
+        print(">>COG EMBED IS LOADING...<<")
     @commands.command()
     # https://cog-creators.github.io/discord-embed-sandbox/
     async def EMB(self, ctx):
