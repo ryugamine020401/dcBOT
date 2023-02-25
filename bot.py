@@ -1,7 +1,8 @@
 import json, os, asyncio, discord
 import datetime
 from discord.ext import commands
-#client 是我們與 Discord 連結的橋樑，intents 是我們要求的權限
+# https://discord.com/developers/applications
+# client 是我們與 Discord 連結的橋樑，intents 是我們要求的權限
 intents_ = discord.Intents.default()
 intents_.message_content = True
 prefix = "!"
@@ -23,21 +24,6 @@ async def on_ready():
 #     if message.content == f'ping':
 #         await message.channel.send('中文')
 
-# class Main(commands.Cog):
-#     def __init__(self, bot):
-#         self.bot = bot
-#     @commands.command()
-#     async def ping(self, ctx):
-#         await ctx.send(f'{round(self.bot.latency*1000)} ms')
-
-
-# def setup(bot):
-#     bot.add_cog(Main(bot))
-
-
-
-    #print(file_name)
-
 async def load_cog():
     for file_name in os.listdir('./cog'):
         if(file_name.endswith('.py')):
@@ -50,15 +36,6 @@ async def main():
         await load_cog()
         await bot.start(jsonfile['TOCKEN'])
 
-
-
-# async def interval():
-#     await bot.wait_until_ready()
-#     print("???")
-#     channel = bot.get_channel(863774440957149195)
-#     while not bot.is_closed():
-#         await channel.send("hello")
-#         await asyncio.sleep(5)
 
 
 with open('./Setting.json', 'r', encoding="UTF-8") as jfile:
