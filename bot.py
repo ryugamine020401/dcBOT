@@ -1,6 +1,4 @@
-import os
-import asyncio
-import discord
+import json, os, asyncio, discord
 import datetime
 from discord.ext import commands
 #client 是我們與 Discord 連結的橋樑，intents 是我們要求的權限
@@ -50,7 +48,7 @@ async def load_cog():
 async def main():
     async with bot:
         await load_cog()
-        await bot.start(TOCKEN)
+        await bot.start(jsonfile['TOCKEN'])
 
 
 
@@ -62,7 +60,8 @@ async def main():
 #         await channel.send("hello")
 #         await asyncio.sleep(5)
 
-TOCKEN = "MTA3NzU4OTU5ODEwNjA0NjU0Ng.GGJo9p.WsimgTFhSl5ydCqXsh3RwNvOq3FVjZIx2Lw5Oo"
+with open('./Setting.json', 'r', encoding="UTF-8") as jfile:
+    jsonfile = json.load(jfile)
 if __name__ =="__main__":
 
     asyncio.run(main())
