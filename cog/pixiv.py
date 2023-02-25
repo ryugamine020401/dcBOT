@@ -17,11 +17,10 @@ class pixiv(Cog_extension):
         soup = BeautifulSoup(html.text, "html.parser")
         req = soup.find_all("section", class_="ranking-item")
         for i in range(n):
-            tmp = re.findall(r'data-src=".*?"', str(req[i]))[0]
+            tmp = re.findall(r'data-src="([^"]+)"', str(req[i]))[0]
+            tmp = re.sub(r'pximg.net/c/\d+x\d+',r'pixiv.cat', tmp)
             print(tmp)
-            print(tmp[9:20]+"pixiv.cat"+tmp[39:])
-            tmp = tmp[9:20]+"pixiv.cat"+tmp[39:]
-            await ctx.send(tmp[1:-1])
+            await ctx.send(tmp)
 
 async def setup(bot):
     await bot.add_cog(pixiv(bot))
