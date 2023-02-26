@@ -1,4 +1,5 @@
-import discord, json
+import discord, json, re, requests
+from bs4 import BeautifulSoup
 from discord.ext import commands
 from core.classes import Cog_extension
 
@@ -31,6 +32,25 @@ class command(Cog_extension):
             print("客戶端輸入 更動定時器時間...")
             json.dump(jsondata, jfile, indent=4)
         await ctx.send("time set successful.")
+    # https://gist.github.com/AbstractUmbra/a9c188797ae194e592efe05fa129c57f
+    # 09-hybrid_commands.py
+                                # 指令名稱，不可大寫。
+    @commands.hybrid_command(name="pixiv", with_app_command=True, description="找目前前五名")
+    # async def ping_command(self, ctx: commands.Context) -> None:
+    #     await commands.response.send_message("hello from the subcommand!")
+    #     await ctx.send("Ppong!")
+    async def TOP5(self, ctx):
+        headers = {'user-agent': 'Mozilla/5.0'}
+        html = requests.get(url="https://www.pixiv.net/ranking.php?lang=zh_tw", headers=headers)
+        soup = BeautifulSoup(html.text, "html.parser")
+        req = soup.find_all("section", class_="ranking-item")
+        for i in range(5):
+            tmp = re.findall(r'data-src="([^"]+)"', str(req[i]))[0]
+            tmp = re.sub(r'pximg.net/c/\d+x\d+',r'pixiv.cat', tmp)
+            print(tmp)
+            await ctx.send(tmp)
+
+
 
 
     # @commands.command()

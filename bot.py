@@ -12,6 +12,7 @@ bot = commands.Bot(command_prefix=prefix, intents=intents_)
 @bot.event
 #當機器人完成啟動時
 async def on_ready():
+    await bot.tree.sync()
     print('>>>BOT ONLINE<<<', bot.user)
 
 @bot.command()
@@ -31,6 +32,10 @@ async def unload(ctx, extension):
     await bot.unload_extension(f'cog.{extension}')
     await ctx.send(f'{extension} Unload Successful.')
     #await self.bot.unload_extension(, name=f'cog.{extension}')
+
+@bot.tree.command(name='ping', description='ping say pong')
+async def ping(interaction: discord.Interaction):
+    await interaction.response.send_message(f'PONG! {bot.latency*1000}')
 
 # @bot.event
 # async def on_message(message):
