@@ -37,8 +37,8 @@ class command(Cog_extension):
                                 # 指令名稱，不可大寫。
     @commands.hybrid_command(name="pixiv", with_app_command=True, description="找目前前五名")
     # async def ping_command(self, ctx: commands.Context) -> None:
-    #     await commands.response.send_message("hello from the subcommand!")
-    #     await ctx.send("Ppong!")
+    #     #await commands.response.send_message("hello from the subcommand!")
+    #     #await ctx.send("Ppong!")
     async def TOP5(self, ctx):
         headers = {'user-agent': 'Mozilla/5.0'}
         html = requests.get(url="https://www.pixiv.net/ranking.php?lang=zh_tw", headers=headers)
@@ -50,6 +50,20 @@ class command(Cog_extension):
             print(tmp)
             await ctx.send(tmp)
 
+    @commands.hybrid_command(name="pixiv2", with_app_command=True, description="找目前前十名")
+    # async def ping_command(self, ctx: commands.Context) -> None:
+    #     await commands.response.send_message("hello from the subcommand!")
+    #     await ctx.send("Ppong!")
+    async def TOP10(self, ctx):
+        headers = {'user-agent': 'Mozilla/5.0'}
+        html = requests.get(url="https://www.pixiv.net/ranking.php?lang=zh_tw", headers=headers)
+        soup = BeautifulSoup(html.text, "html.parser")
+        req = soup.find_all("section", class_="ranking-item")
+        for i in range(10):
+            tmp = re.findall(r'data-src="([^"]+)"', str(req[i]))[0]
+            tmp = re.sub(r'pximg.net/c/\d+x\d+', r'pixiv.cat', tmp)
+            print(tmp)
+            await ctx.send(tmp)
 
 
 
